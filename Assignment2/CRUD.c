@@ -1,16 +1,22 @@
 #include<stdio.h>
 #include<string.h>
+
+//Structure to hold student information
 struct student
 {
     int id;
     char name[20];
     int age;
 };
+
+//Function declarations
 void createUser();
 void readUsers();
 void updateUser();
 void deleteUser();  
-int idexists(int id);
+int idexists(int id);// Function to check if a user with the given ID already exists
+
+// Main function
 int main(){
     int choice;
     int run=1;
@@ -46,6 +52,8 @@ int main(){
     }
     return 0;
 }
+
+// Function to check if a user with the given ID already exists
 int idexists(int id) {
     struct student s1;
     FILE *file = fopen("users.txt", "r");
@@ -62,6 +70,8 @@ int idexists(int id) {
     fclose(file);
     return 0;
 }
+
+// Function to create a new user and save it to the file
 void createUser(){
     struct student s1;
     FILE *file;
@@ -86,6 +96,8 @@ void createUser(){
     fclose(file);
     printf("User created successfully.\n");
 }
+
+// Function to read and display all users from the file
 void readUsers(){
     struct student s1;
     FILE *file;
@@ -102,6 +114,8 @@ void readUsers(){
     }
     fclose(file);
 }
+
+// Function to update an existing user's information in the file
 void updateUser(){
     FILE *file;
     file=fopen("users.txt","r");
@@ -148,6 +162,8 @@ void updateUser(){
     remove("users.txt");
     rename("temp.txt", "users.txt");
 }
+
+// Function to delete a user from the file based on the given ID
 void deleteUser(){
     FILE *file;
     file=fopen("users.txt","r");
