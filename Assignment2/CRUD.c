@@ -27,7 +27,11 @@ int main(){
         printf("4. Delete User\n");
         printf("5. Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            while (getchar() != '\n');
+            printf("Invalid input! Please enter a number.\n");
+            continue;
+        }
         switch(choice){
             case 1:
                 createUser();
@@ -58,7 +62,6 @@ int idexists(int id) {
     struct student s1;
     FILE *file = fopen("users.txt", "r");
     if (file == NULL) {
-        printf("Error opening file!\n");
         return 0;
     }
     while (fscanf(file, "%d %s %d", &s1.id, s1.name, &s1.age) == 3) {
